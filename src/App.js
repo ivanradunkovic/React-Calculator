@@ -12,6 +12,31 @@ class App extends Component {
         }
     }
 
+    calculate = () => { //calculate function will calculate result of expression. This is triggered when = button is pressed.
+        try {
+            this.setState({
+                result: ((this.state.result) || "" ) + ""
+            })
+        } catch (e) {
+            this.setState({
+                result: "error"
+            })
+
+        }
+    };
+
+    reset = () => { //this will clear all output. Triggers on C button
+        this.setState({
+            result: ""
+        })
+    };
+
+    backspace = () => { // clear last charachter inputed. Triggers on CE button
+        this.setState({
+            result: this.state.result.slice(0, -1)
+        })
+    };
+
     render() {
         return (
             <div>
