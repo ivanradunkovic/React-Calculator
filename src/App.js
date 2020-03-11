@@ -12,10 +12,31 @@ class App extends Component {
         }
     }
 
+    onClick = button => {
+
+        if(button === "="){
+            this.calculate()
+        }
+
+        else if(button === "C"){
+            this.reset()
+        }
+        else if(button === "CE"){
+            this.clear()
+        }
+
+        else {
+            this.setState({
+                result: this.state.result + button
+            })
+        }
+    };
+
     calculate = () => { //calculate function will calculate result of expression. This is triggered when = button is pressed.
         try {
             this.setState({
-                result: ((this.state.result) || "" ) + ""
+                // eslint-disable-next-line no-eval
+                result: (eval(this.state.result) || "" ) + ""
             })
         } catch (e) {
             this.setState({
@@ -31,7 +52,7 @@ class App extends Component {
         })
     };
 
-    backspace = () => { // clear last charachter inputed. Triggers on CE button
+    clear = () => { // clear last charachter inputed. Triggers on CE button
         this.setState({
             result: this.state.result.slice(0, -1)
         })
